@@ -1,7 +1,7 @@
 services:
   briar-bot:
     image: ${BRIARBOT_IMAGE:?Set BRIARBOT_IMAGE to your GHCR image, for example ghcr.io/owner/briarbot:latest}
-    container_name: briar-bot
+    container_name: briarbot
     restart: unless-stopped
 
     environment:
