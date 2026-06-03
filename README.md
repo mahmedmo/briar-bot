@@ -8,7 +8,7 @@ A Discord bot that provides Epic Seven character build analysis and statistics.
 <img src="example.png" alt="Example Usage" width="250">
 </div>
 
-## What BriarBot Does
+## What Briar Bot Does
 
 - **Build Statistics** - Average stats from thousands of players
 - **Popular Gear Sets** - Most used set combinations
