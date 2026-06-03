@@ -1,4 +1,4 @@
-# 🌙  BriarBot
+# 🌙  Briar Bot
 
 *"The witch stirs... speak your desires, mortal."*
 
