@@ -1,7 +1,7 @@
 #!/bin/sh
-# BriarBot Docker Entrypoint Script
+# Briar Bot Docker Entrypoint Script
 
-# This script runs as root to fix permissions, then switches to briarbot
+# This script runs as root to fix permissions, then switches to briar-bot
 
 # Ensure cache directory exists
 if [ ! -d "/app/cache" ]; then
@@ -15,12 +15,12 @@ fi
 # Fix ownership - only if we're root (UID 0)
 if [ "$(id -u)" = "0" ]; then
     echo "Running as root, fixing permissions..."
-    chown -R briarbot:briarbot /app/cache 2>/dev/null || echo "Warning: Could not change cache ownership"
+    chown -R briar-bot:briar-bot /app/cache 2>/dev/null || echo "Warning: Could not change cache ownership"
     if [ -d "/app/logs" ]; then
-        chown -R briarbot:briarbot /app/logs 2>/dev/null || echo "Warning: Could not change logs ownership"
+        chown -R briar-bot:briar-bot /app/logs 2>/dev/null || echo "Warning: Could not change logs ownership"
     fi
-    # Switch to briarbot user
-    exec su-exec briarbot "$@"
+    # Switch to briar-bot user
+    exec su-exec briar-bot "$@"
 else
     echo "Running as non-root user $(id -u), skipping permission changes"
     # Just run directly

@@ -65,11 +65,11 @@ The workflow updates both [assets/data/character-names.json](assets/data/charact
 
 For a one-time server setup, use the published GitHub Container Registry image plus a host cron job:
 
-1. On the server, set `BRIARBOT_IMAGE=ghcr.io/<owner>/<repo>:latest` in `.env`.
+1. On the server, set `BRIAR_BOT_IMAGE=ghcr.io/<owner>/<repo>:latest` in `.env`.
 2. Start the production stack with `docker compose -f docker-compose.server.yml up -d --remove-orphans`.
 3. Install the automatic update job with `bash scripts/install-server-auto-update-cron.sh 5`.
 
-After that, character updates run through **Manage Character Data**, which publishes a fresh GHCR image when targeting `main`, and the server cron job checks for updates every few minutes and recreates BriarBot when a new image appears. The separate **Publish Container** workflow is still available for manual rebuilds and normal code pushes to `main`.
+After that, character updates run through **Manage Character Data**, which publishes a fresh GHCR image when targeting `main`, and the server cron job checks for updates every few minutes and recreates Briar Bot when a new image appears. The separate **Publish Container** workflow is still available for manual rebuilds and normal code pushes to `main`.
 
 ## Testing
 

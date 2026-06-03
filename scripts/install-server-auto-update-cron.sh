@@ -25,7 +25,7 @@ else
 	printf '%s\n' "$CRON_JOB" | crontab -
 fi
 
-echo "Installed BriarBot auto-update cron job:"
+echo "Installed Briar Bot auto-update cron job:"
 echo "$CRON_JOB"
 echo ""
 echo "Logs will be written to $LOG_FILE"

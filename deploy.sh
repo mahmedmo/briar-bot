@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# BriarBot Deployment Script
+# Briar Bot Deployment Script
 # Local mode: pulls git + rebuilds from source
 # Server image mode: pulls the published container image instead
 
@@ -9,11 +9,11 @@ set -e  # Exit on error
 COMPOSE_FILE="${COMPOSE_FILE:-docker-compose.yml}"
 COMPOSE_CMD=(docker compose -f "$COMPOSE_FILE")
 
-echo "🌙 BriarBot Deployment"
+echo "🌙 Briar Bot Deployment"
 echo "======================"
 echo ""
 
-if [ "$COMPOSE_FILE" = "docker-compose.server.yml" ] || [ -n "${BRIARBOT_IMAGE:-}" ]; then
+if [ "$COMPOSE_FILE" = "docker-compose.server.yml" ] || [ -n "${BRIAR_BOT_IMAGE:-}" ]; then
 	echo "Pulling latest published image..."
 	"${COMPOSE_CMD[@]}" pull briar-bot
 	echo ""

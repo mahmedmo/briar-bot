@@ -1120,7 +1120,7 @@ async function loadGameData(retryCount = 0) {
 		const heroResponse = await fetch(HERO_CACHE, {
 			timeout: 10000,
 			headers: {
-				'User-Agent': 'BriarBot/1.0'
+				'User-Agent': 'briar-bot/1.0'
 			}
 		});
 		if (!heroResponse.ok) throw new Error(`Hero data fetch failed: ${heroResponse.status}`);
@@ -1133,7 +1133,7 @@ async function loadGameData(retryCount = 0) {
 		const artifactResponse = await fetch(ARTIFACT_CACHE, {
 			timeout: 10000,
 			headers: {
-				'User-Agent': 'BriarBot/1.0'
+				'User-Agent': 'briar-bot/1.0'
 			}
 		});
 		if (!artifactResponse.ok) throw new Error(`Artifact data fetch failed: ${artifactResponse.status}`);
@@ -1422,7 +1422,7 @@ async function generateHTML(data) {
 		}
 	}
 
-	// Convert BriarBot watermark to base64
+	// Convert Briar Bot watermark to base64
 	const watermarkPath = path.join(__dirname, '..', 'icon.png');
 	let watermarkDataUrl = '';
 	if (fs.existsSync(watermarkPath)) {
@@ -1757,7 +1757,7 @@ async function generateHTML(data) {
 <body>
 	${watermarkDataUrl ? `
 		<div class="watermark-container">
-			<img src="${watermarkDataUrl}" class="watermark" alt="BriarBot">
+			<img src="${watermarkDataUrl}" class="watermark" alt="Briar Bot">
 			<span class="watermark-text">Briar Bot</span>
 		</div>
 	` : ''}
@@ -1932,7 +1932,7 @@ async function generateReportImage(data) {
 // Create HTTP server for Render deployment
 const server = http.createServer((req, res) => {
 	res.writeHead(200, { 'Content-Type': 'text/plain' });
-	res.end('BriarBot is running!\n');
+	res.end('Briar Bot is running!\n');
 });
 
 // Process optimization for VM environment

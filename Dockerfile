@@ -1,4 +1,4 @@
-# Multi-stage Dockerfile for BriarBot
+# Multi-stage Dockerfile for Briar Bot
 # Optimized for production deployment on Ubuntu home servers
 
 # ================================
@@ -51,8 +51,8 @@ ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
 
 # Create a non-root user for security
-RUN addgroup -g 1001 -S briarbot && \
-    adduser -S briarbot -u 1001
+RUN addgroup -g 1001 -S briar-bot && \
+    adduser -S briar-bot -u 1001
 
 # ================================
 # Stage 3: Production Runtime
@@ -60,13 +60,13 @@ RUN addgroup -g 1001 -S briarbot && \
 FROM node:18-alpine AS runtime
 
 # Set labels for metadata
-LABEL maintainer="BriarBot" \
+LABEL maintainer="Briar Bot" \
       description="Epic Seven Discord Bot for Build Analysis" \
       version="2.0" \
-      org.opencontainers.image.title="BriarBot" \
+      org.opencontainers.image.title="Briar Bot" \
       org.opencontainers.image.description="Epic Seven Discord bot with caching and rate limiting" \
-      org.opencontainers.image.url="https://github.com/user/BriarBot" \
-      org.opencontainers.image.vendor="BriarBot Team"
+      org.opencontainers.image.url="https://github.com/mahmedmo/briar-bot" \
+      org.opencontainers.image.vendor="Briar Bot Team"
 
 # Install runtime dependencies
 RUN apk add --no-cache \
@@ -84,8 +84,8 @@ RUN apk add --no-cache \
     su-exec
 
 # Create non-root user
-RUN addgroup -g 1001 -S briarbot && \
-    adduser -S briarbot -u 1001 -G briarbot
+RUN addgroup -g 1001 -S briar-bot && \
+    adduser -S briar-bot -u 1001 -G briar-bot
 
 # Set Puppeteer environment variables
 ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
@@ -101,7 +101,7 @@ WORKDIR /app
 
 # Create cache directory with proper permissions
 RUN mkdir -p /app/cache/heroes && \
-    chown -R briarbot:briarbot /app/cache
+    chown -R briar-bot:briar-bot /app/cache
 
 # Copy dependencies from builder stage
 COPY --from=dependencies /app/node_modules ./node_modules
@@ -111,9 +111,9 @@ COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
 # Copy application files
-COPY --chown=briarbot:briarbot src/ ./src/
-COPY --chown=briarbot:briarbot assets/ ./assets/
-COPY --chown=briarbot:briarbot package*.json ./
+COPY --chown=briar-bot:briar-bot src/ ./src/
+COPY --chown=briar-bot:briar-bot assets/ ./assets/
+COPY --chown=briar-bot:briar-bot package*.json ./
 
 # Create volume mount points
 VOLUME ["/app/cache"]

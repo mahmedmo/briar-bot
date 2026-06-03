@@ -4,7 +4,7 @@ services:
       context: .
       dockerfile: Dockerfile
     image: briar-bot:latest
-    container_name: briarbot
+    container_name: briar-bot
     restart: unless-stopped
     
     # Environment
@@ -18,7 +18,7 @@ services:
     
     # Persistent storage
     volumes:
-      - /mnt/orbis/containers/briarbot/cache:/app/cache:rw
+      - /mnt/orbis/containers/briar-bot/cache:/app/cache:rw
       - ./logs:/app/logs:rw
       - /etc/localtime:/etc/localtime:ro
     
@@ -62,6 +62,6 @@ services:
     
     # Metadata
     labels:
-      - "com.briarbot.service=discord-bot"
-      - "com.briarbot.environment=production"
-      - "com.briarbot.version=2.0"
+      - "com.briar-bot.service=discord-bot"
+      - "com.briar-bot.environment=production"
+      - "com.briar-bot.version=2.0"

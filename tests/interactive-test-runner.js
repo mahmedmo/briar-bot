@@ -81,7 +81,7 @@ class TestRunner {
     }
 
     async initialize() {
-        console.log(colorize('\n🧪 BriarBot Interactive Test Runner', 'bold'));
+        console.log(colorize('\n🧪 Briar Bot Interactive Test Runner', 'bold'));
         console.log(colorize('='*50, 'cyan') + '\n');
         
         console.log(colorize('Initializing test environment...', 'yellow'));

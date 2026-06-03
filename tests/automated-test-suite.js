@@ -51,7 +51,7 @@ class AutomatedTestSuite {
     }
 
     async initialize() {
-        console.log(colorize('🧪 BriarBot Automated Test Suite', 'bold'));
+        console.log(colorize('🧪 Briar Bot Automated Test Suite', 'bold'));
         console.log(colorize('='*50, 'cyan'));
         console.log('');
         
