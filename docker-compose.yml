@@ -1,11 +1,9 @@
 services:
   briar-bot:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    image: briar-bot:latest
+    image: ${BRIAR_BOT_IMAGE:?Set BRIAR_BOT_IMAGE to your GHCR image, for example ghcr.io/owner/briar-bot:latest}
     container_name: briar-bot
     restart: unless-stopped
+    network_mode: bridge
     
     # Environment
     environment:

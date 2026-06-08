@@ -3,7 +3,7 @@
 set -euo pipefail
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-COMPOSE_FILE="${COMPOSE_FILE:-docker-compose.server.yml}"
+COMPOSE_FILE="${COMPOSE_FILE:-docker-compose.yml}"
 LOCK_DIR="${TMPDIR:-/tmp}/briar-bot-auto-update.lock"
 TIMESTAMP="$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
 
