@@ -32,7 +32,7 @@ It is intended for private Discord servers, guild communities, and home-server d
 
 <p><strong>Build Lookup</strong></p>
 
-<img width="250" alt="Briar Bot character build response" src="example.png" />
+<img width="250" alt="Briar Bot character build response" src="assets/screenshot.png" />
 
 ## Usage
 

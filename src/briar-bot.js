@@ -1078,39 +1078,42 @@ function analyzeArtifactPopularity(builds) {
 		.slice(0, 10);
 }
 
+const ICON_ASSET_DIR = path.join(__dirname, '..', 'assets', 'icons');
+const iconAssetPath = (fileName) => path.join(ICON_ASSET_DIR, fileName);
+
 const SET_ASSETS = {
-	"set_acc": path.join(__dirname, '..', 'assets', 'sethit.png'),
-	"set_att": path.join(__dirname, '..', 'assets', 'setattack.png'),
-	"set_coop": path.join(__dirname, '..', 'assets', 'setunity.png'),
-	"set_counter": path.join(__dirname, '..', 'assets', 'setcounter.png'),
-	"set_cri_dmg": path.join(__dirname, '..', 'assets', 'setdestruction.png'),
-	"set_cri": path.join(__dirname, '..', 'assets', 'setcritical.png'),
-	"set_def": path.join(__dirname, '..', 'assets', 'setdefense.png'),
-	"set_immune": path.join(__dirname, '..', 'assets', 'setimmunity.png'),
-	"set_max_hp": path.join(__dirname, '..', 'assets', 'sethealth.png'),
-	"set_penetrate": path.join(__dirname, '..', 'assets', 'setpenetration.png'),
-	"set_rage": path.join(__dirname, '..', 'assets', 'setrage.png'),
-	"set_res": path.join(__dirname, '..', 'assets', 'setresist.png'),
-	"set_revenge": path.join(__dirname, '..', 'assets', 'setrevenge.png'),
-	"set_reversal": path.join(__dirname, '..', 'assets', 'setreversal.png'),
-	"set_riposte": path.join(__dirname, '..', 'assets', 'setriposte.png'),
-	"set_scar": path.join(__dirname, '..', 'assets', 'setinjury.png'),
-	"set_speed": path.join(__dirname, '..', 'assets', 'setspeed.png'),
-	"set_vampire": path.join(__dirname, '..', 'assets', 'setlifesteal.png'),
-	"set_shield": path.join(__dirname, '..', 'assets', 'setprotection.png'),
-	"set_torrent": path.join(__dirname, '..', 'assets', 'settorrent.png')
+	"set_acc": iconAssetPath('sethit.png'),
+	"set_att": iconAssetPath('setattack.png'),
+	"set_coop": iconAssetPath('setunity.png'),
+	"set_counter": iconAssetPath('setcounter.png'),
+	"set_cri_dmg": iconAssetPath('setdestruction.png'),
+	"set_cri": iconAssetPath('setcritical.png'),
+	"set_def": iconAssetPath('setdefense.png'),
+	"set_immune": iconAssetPath('setimmunity.png'),
+	"set_max_hp": iconAssetPath('sethealth.png'),
+	"set_penetrate": iconAssetPath('setpenetration.png'),
+	"set_rage": iconAssetPath('setrage.png'),
+	"set_res": iconAssetPath('setresist.png'),
+	"set_revenge": iconAssetPath('setrevenge.png'),
+	"set_reversal": iconAssetPath('setreversal.png'),
+	"set_riposte": iconAssetPath('setriposte.png'),
+	"set_scar": iconAssetPath('setinjury.png'),
+	"set_speed": iconAssetPath('setspeed.png'),
+	"set_vampire": iconAssetPath('setlifesteal.png'),
+	"set_shield": iconAssetPath('setprotection.png'),
+	"set_torrent": iconAssetPath('settorrent.png')
 };
 
 const STAT_ICONS = {
-	atk: path.join(__dirname, '..', 'assets', 'statatk.png'),
-	def: path.join(__dirname, '..', 'assets', 'statdef.png'),
-	hp: path.join(__dirname, '..', 'assets', 'stathp.png'),
-	spd: path.join(__dirname, '..', 'assets', 'statspd.png'),
-	chc: path.join(__dirname, '..', 'assets', 'statcr.png'),
-	chd: path.join(__dirname, '..', 'assets', 'statcd.png'),
-	eff: path.join(__dirname, '..', 'assets', 'stateff_dt.png'),
-	efr: path.join(__dirname, '..', 'assets', 'statres.png'),
-	gs: path.join(__dirname, '..', 'assets', 'star.png')
+	atk: iconAssetPath('statatk.png'),
+	def: iconAssetPath('statdef.png'),
+	hp: iconAssetPath('stathp.png'),
+	spd: iconAssetPath('statspd.png'),
+	chc: iconAssetPath('statcr.png'),
+	chd: iconAssetPath('statcd.png'),
+	eff: iconAssetPath('stateff_dt.png'),
+	efr: iconAssetPath('statres.png'),
+	gs: iconAssetPath('star.png')
 };
 
 // Load game data with retry mechanism
@@ -1218,7 +1221,7 @@ const FOUR_PIECE_SETS = new Set([
 
 // Function to create a broken set icon using the asset
 function createBrokenIcon() {
-	const brokenPath = path.join(__dirname, '..', 'assets', 'setbroken.png');
+	const brokenPath = iconAssetPath('setbroken.png');
 	if (fs.existsSync(brokenPath)) {
 		const imageBuffer = fs.readFileSync(brokenPath);
 		const imageBase64 = imageBuffer.toString('base64');

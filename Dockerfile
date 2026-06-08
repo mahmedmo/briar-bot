@@ -1,5 +1,4 @@
 # Multi-stage Dockerfile for Briar Bot
-# Optimized for production deployment on Ubuntu home servers
 
 # ================================
 # Stage 1: Dependencies Builder
@@ -64,9 +63,9 @@ LABEL maintainer="Briar Bot" \
       description="Epic Seven Discord Bot for Build Analysis" \
       version="2.0" \
       org.opencontainers.image.title="Briar Bot" \
-      org.opencontainers.image.description="Epic Seven Discord bot with caching and rate limiting" \
+      org.opencontainers.image.description="Epic Seven Discord bot for character build data" \
       org.opencontainers.image.url="https://github.com/mahmedmo/briar-bot" \
-      org.opencontainers.image.vendor="Briar Bot Team"
+      org.opencontainers.image.vendor="mahmedmo"
 
 # Install runtime dependencies
 RUN apk add --no-cache \

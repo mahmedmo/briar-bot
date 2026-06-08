@@ -20,7 +20,7 @@ services:
       - ./logs:/app/logs:rw
       - /etc/localtime:/etc/localtime:ro
     
-    # Resource limits for home server
+    # Resource limits
     deploy:
       resources:
         limits:
