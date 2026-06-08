@@ -9,7 +9,7 @@ Look up popular builds, gear sets, artifacts, and benchmark stats directly from 
 [![Docker](https://img.shields.io/badge/ghcr.io-2496ED?logo=docker&logoColor=white)](Dockerfile)
 [![License](https://img.shields.io/badge/license-GPL--3.0-F47C3C)](LICENSE)
 
-<img width="250" alt="Briar Bot character build response" src="example.png" />
+<img width="200" alt="Briar Bot icon" src="assets/briar-bot.png" />
 
 </div>
 
