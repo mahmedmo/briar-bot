@@ -1423,7 +1423,7 @@ async function generateHTML(data) {
 	}
 
 	// Convert Briar Bot watermark to base64
-	const watermarkPath = path.join(__dirname, '..', 'icon.png');
+	const watermarkPath = path.join(__dirname, '..', 'assets', 'briar-bot.png');
 	let watermarkDataUrl = '';
 	if (fs.existsSync(watermarkPath)) {
 		const watermarkBuffer = fs.readFileSync(watermarkPath);
