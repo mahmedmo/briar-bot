@@ -7,9 +7,11 @@
 Look up popular builds, gear sets, artifacts, and benchmark stats directly from Discord.
 
 [![Docker](https://img.shields.io/badge/ghcr.io-2496ED?logo=docker&logoColor=white)](Dockerfile)
-[![License](https://img.shields.io/badge/license-GPL--3.0-F47C3C)](LICENSE)
 
 <img width="200" alt="Briar Bot icon" src="assets/briar-bot.png" />
+
+<p><strong>Build Lookup</strong></p>
+<img width="250" alt="Briar Bot character build response" src="example.png" />
 
 </div>
 
@@ -58,7 +60,7 @@ The published container image is available from GitHub Container Registry:
 docker pull ghcr.io/mahmedmo/briar-bot:latest
 ```
 
-For Docker Compose deployments, copy `.env.template` to `.env`, fill in the required Discord token, set `BRIAR_BOT_IMAGE`, then start the bot:
+For Docker Compose deployments, copy `.env.template` to `.env`, fill in the required Discord token, then start the bot:
 
 ```bash
 docker compose pull
@@ -78,7 +80,6 @@ The updater runs `scripts/update-briar-bot.sh`, pulls the configured image, and 
 | Variable | Requirement | Description | Default |
 | -------- | ----------- | ----------- | ------- |
 | `BOT_TOKEN` | Required | Discord bot token from the Discord Developer Portal | - |
-| `BRIAR_BOT_IMAGE` | Required for Docker Compose | Published image to run | - |
 | `TIMEZONE` | Optional | Time zone used by the container | `UTC` |
 | `NODE_ENV` | Optional | Node runtime environment | `production` |
 | `GUILD_WAR_ANNOUNCEMENT_CHANNELS` | Optional | Comma-separated Discord channel IDs for guild war reminders | - |
@@ -114,18 +115,10 @@ npm test
 npm run test:character-data
 ```
 
-## Built With
-
-- Node.js
-- Discord.js
-- Puppeteer
-- Docker
-- [Fribbels Epic 7 Optimizer](https://github.com/fribbels/Fribbels-Epic-7-Optimizer)
-
 ## Transparency
 
 AI assisted with implementation, debugging, and refactoring. Human implementation, direction, review, testing, and product decisions guided the project.
 
-## License
+## Credits
 
-Briar Bot is licensed under GPL-3.0-only. See [LICENSE](LICENSE).
+Briar Bot uses build data aggregation from [Fribbels Epic 7 Optimizer](https://github.com/fribbels/Fribbels-Epic-7-Optimizer).
