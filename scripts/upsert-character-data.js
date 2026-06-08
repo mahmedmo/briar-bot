@@ -3,8 +3,8 @@
 const fs = require('fs');
 const path = require('path');
 
-const characterDataPath = path.join(__dirname, '..', 'assets', 'data', 'character-names.json');
-const characterAliasDataPath = path.join(__dirname, '..', 'assets', 'data', 'character-aliases.json');
+const characterDataPath = path.join(__dirname, '..', 'data', 'character-names.json');
+const characterAliasDataPath = path.join(__dirname, '..', 'data', 'character-aliases.json');
 
 function parseArgs(argv) {
 	const args = {};

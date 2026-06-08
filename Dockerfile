@@ -112,6 +112,7 @@ RUN chmod +x /usr/local/bin/entrypoint.sh
 # Copy application files
 COPY --chown=briar-bot:briar-bot src/ ./src/
 COPY --chown=briar-bot:briar-bot assets/ ./assets/
+COPY --chown=briar-bot:briar-bot data/ ./data/
 COPY --chown=briar-bot:briar-bot package*.json ./
 
 # Create volume mount points

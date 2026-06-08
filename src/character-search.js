@@ -2,8 +2,8 @@ const fs = require('fs');
 const path = require('path');
 
 // Load character names
-const characterDataPath = path.join(__dirname, '..', 'assets', 'data', 'character-names.json');
-const characterAliasDataPath = path.join(__dirname, '..', 'assets', 'data', 'character-aliases.json');
+const characterDataPath = path.join(__dirname, '..', 'data', 'character-names.json');
+const characterAliasDataPath = path.join(__dirname, '..', 'data', 'character-aliases.json');
 let characterNames = [];
 let communityAbbreviations = {};
 
