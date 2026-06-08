@@ -13,8 +13,6 @@ Look up popular builds, gear sets, artifacts, and benchmark stats directly from 
 
 </div>
 
-<br/>
-
 ## About
 
 Briar Bot is a Discord bot for Epic Seven build lookups. It turns character names and aliases into visual build reports with common stat ranges, gear sets, artifact usage, and related build data.
