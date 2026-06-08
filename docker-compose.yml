@@ -50,7 +50,6 @@ services:
     tmpfs:
       - /tmp:noexec,nosuid,size=100m
     
-    # Efficient logging for production
     logging:
       driver: json-file
       options:
