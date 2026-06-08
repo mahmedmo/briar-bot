@@ -1,102 +1,131 @@
-# 🌙  Briar Bot
-
-*"The witch stirs... speak your desires, mortal."*
-
-A Discord bot that provides Epic Seven character build analysis and statistics.
-
 <div align="center">
-<img src="example.png" alt="Example Usage" width="250">
+
+# Briar Bot
+
+**Epic Seven Discord bot for character build data and guild war reminders.**
+
+Look up popular builds, gear sets, artifacts, and benchmark stats directly from Discord.
+
+[![Docker](https://img.shields.io/badge/ghcr.io-2496ED?logo=docker&logoColor=white)](Dockerfile)
+[![License](https://img.shields.io/badge/license-GPL--3.0-F47C3C)](LICENSE)
+
+<img width="250" alt="Briar Bot character build response" src="example.png" />
+
 </div>
 
-## What Briar Bot Does
+<br/>
 
-- **Build Statistics** - Average stats from thousands of players
-- **Popular Gear Sets** - Most used set combinations
-- **Artifact Recommendations** - Popular artifact choices
-- **Visual Reports** - Clean stat cards with build data
-- **Guild War Announcements** - Automated reminders for guild war attack and defense phases
-- **Server Integration** - Seamless discord server integration
+## About
 
+Briar Bot is a Discord bot for Epic Seven build lookups. It turns character names and aliases into visual build reports with common stat ranges, gear sets, artifact usage, and related build data.
+
+It is intended for private Discord servers, guild communities, and home-server deployments that want quick Epic Seven build references without leaving chat.
+
+## Features
+
+- Look up Epic Seven character build data from Discord
+- Show common stat benchmarks, gear sets, and artifacts
+- Generate visual build report cards
+- Support aliases and shorthand character names
+- Send optional guild war attack and defense reminders
+- Publish container images to GitHub Container Registry
 
 ## Commands
 
-**Character Builds:**
-```
-!arbiter vildred    → Get Arbiter Vildred build data
-!luna               → Get Luna build data
-!seaside bellona    → Get Seaside Bellona build data
-```
+Character lookups:
 
-**Guild War Announcements (Admin Only):**
-```
-!testguildwar both     → Test both announcement types
-!testguildwar attack   → Test attack announcement
-!testguildwar defense  → Test defense announcement
+```text
+!arbiter vildred
+!luna
+!seaside bellona
 ```
 
-## Setup
+Guild war announcement tests:
 
-1. **Install Dependencies**
-   ```bash
-   npm install
-   ```
+```text
+!testguildwar both
+!testguildwar attack
+!testguildwar defense
+```
 
-2. **Configure Bot Token**
-   - Set your Discord bot token in `.env`
-   - Grant bot permissions: Read Messages, Send Messages, Attach Files
+## Deployment
 
-3. **Start the Bot**
-   ```bash
-   npm start
-   ```
+Briar Bot runs as a single Docker Compose service and stores runtime cache and logs in local bind mounts.
 
-## Character Update Automation
-
-You can now add a new Epic Seven unit without hand-editing source files:
-
-1. Open the **Manage Character Data** GitHub Action.
-2. Enter the full unit name in `character_name`.
-3. Optionally enter abbreviations in `aliases` as comma-separated values like `spoli, sea politis`.
-4. Run the workflow against `main` or `develop`.
-
-The workflow updates both [assets/data/character-names.json](assets/data/character-names.json) and [assets/data/character-aliases.json](assets/data/character-aliases.json), validates the search layer, and commits the result back to the branch. When you target `main`, the same workflow also publishes a fresh GHCR image for the server to pick up automatically.
-
-## Hands-Off Server Updates
-
-For a one-time server setup, use the published GitHub Container Registry image plus a host cron job:
-
-1. On the server, set `BRIAR_BOT_IMAGE=ghcr.io/<owner>/<repo>:latest` in `.env`.
-2. Start the production stack with `docker compose -f docker-compose.server.yml up -d --remove-orphans`.
-3. Install the automatic update job with `bash scripts/install-server-auto-update-cron.sh 5`.
-
-After that, character updates run through **Manage Character Data**, which publishes a fresh GHCR image when targeting `main`, and the server cron job checks for updates every few minutes and recreates Briar Bot when a new image appears. The separate **Publish Container** workflow is still available for manual rebuilds and normal code pushes to `main`.
-
-## Testing
+The published container image is available from GitHub Container Registry:
 
 ```bash
-npm test                 → Run automated test suite
-npm run test:character-data → Validate character names and aliases
-npm run test:interactive → Interactive testing mode
+docker pull ghcr.io/mahmedmo/briar-bot:latest
 ```
 
-The test suite includes:
-- Character search functionality
-- Full workflow testing (data analysis + image generation)  
-- Cache system validation
-- Performance benchmarks
+For Docker Compose deployments, copy `.env.template` to `.env`, fill in the required Discord token, set `BRIAR_BOT_IMAGE`, then start the bot:
+
+```bash
+docker compose pull
+docker compose up -d
+```
+
+To install the optional automatic updater on a server:
+
+```bash
+bash scripts/install-server-auto-update-cron.sh 5
+```
+
+The updater runs `scripts/update-briar-bot.sh`, pulls the configured image, and recreates the bot when a new image is available.
+
+### Configuration
+
+| Variable | Requirement | Description | Default |
+| -------- | ----------- | ----------- | ------- |
+| `BOT_TOKEN` | Required | Discord bot token from the Discord Developer Portal | - |
+| `BRIAR_BOT_IMAGE` | Required for Docker Compose | Published image to run | - |
+| `TIMEZONE` | Optional | Time zone used by the container | `UTC` |
+| `NODE_ENV` | Optional | Node runtime environment | `production` |
+| `GUILD_WAR_ANNOUNCEMENT_CHANNELS` | Optional | Comma-separated Discord channel IDs for guild war reminders | - |
+| `GUILD_WAR_ANNOUNCEMENTS_ENABLED` | Optional | Enables scheduled guild war reminders | `true` |
+| `CACHE_TTL_DAYS` | Optional | Number of days to keep cached data | `30` |
+| `CACHE_MAX_SIZE` | Optional | Maximum cache entries | `500` |
+| `RATE_LIMIT_MAX_RETRIES` | Optional | Maximum retry attempts for rate-limited requests | `12` |
+| `MAX_MEMORY_RESTART` | Optional | Memory threshold used by runtime cleanup logic | `1024M` |
+
+## Character Data
+
+Character names and aliases live in `assets/data/`. The **Manage Character Data** GitHub Action can add or update characters, validate the search layer, commit the result, and publish a fresh GHCR image when targeting `main`.
+
+## Development
+
+For local development:
+
+```bash
+npm install
+npm run dev
+```
+
+For production-like local startup:
+
+```bash
+npm start
+```
+
+Run the test suite:
+
+```bash
+npm test
+npm run test:character-data
+```
 
 ## Built With
 
-- **Node.js** - Runtime environment
-- **Discord.js** - Discord API integration  
-- **Puppeteer** - Web scraping and image generation
-- **Docker** - Containerized deployment
-- **[Fribbels Epic 7 Optimizer](https://github.com/fribbels/Fribbels-Epic-7-Optimizer)** - Build data source
+- Node.js
+- Discord.js
+- Puppeteer
+- Docker
+- [Fribbels Epic 7 Optimizer](https://github.com/fribbels/Fribbels-Epic-7-Optimizer)
+
+## Transparency
+
+AI assisted with implementation, debugging, and refactoring. Human implementation, direction, review, testing, and product decisions guided the project.
 
 ## License
 
-This project is licensed under GPL-3.0-only. See [LICENSE](LICENSE).
-
----
-
-*☾ The witch awaits your command...*
+Briar Bot is licensed under GPL-3.0-only. See [LICENSE](LICENSE).
