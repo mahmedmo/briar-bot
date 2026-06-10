@@ -4,7 +4,7 @@ set -euo pipefail
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 INTERVAL_MINUTES="${1:-5}"
-LOG_FILE="$REPO_ROOT/logs/auto-update.log"
+LOG_FILE="$REPO_ROOT/auto-update.log"
 SCRIPT_PATH="$REPO_ROOT/scripts/update-briar-bot.sh"
 
 if ! [[ "$INTERVAL_MINUTES" =~ ^[0-9]+$ ]] || [ "$INTERVAL_MINUTES" -lt 1 ] || [ "$INTERVAL_MINUTES" -gt 59 ]; then
@@ -13,7 +13,7 @@ if ! [[ "$INTERVAL_MINUTES" =~ ^[0-9]+$ ]] || [ "$INTERVAL_MINUTES" -lt 1 ] || [
 	exit 1
 fi
 
-mkdir -p "$REPO_ROOT/logs"
+touch "$LOG_FILE"
 
 CRON_JOB="*/${INTERVAL_MINUTES} * * * * cd \"$REPO_ROOT\" && /bin/bash \"$SCRIPT_PATH\" >> \"$LOG_FILE\" 2>&1"
 EXISTING_CRONTAB="$(crontab -l 2>/dev/null || true)"
